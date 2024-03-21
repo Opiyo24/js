@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+    <head></head>
+    <body>
+        <!--
+            document.getElementById
+            - If an element has the id attribute, we can get the lement using 
+            the method document.getElementById(id), no matter where it is.
+            - Creating a javascript variable with the name 'elem' makes the varaible take precedence thus making the lement id null.
+        -->
+        <div id="elem">
+            <div id="elem-content">Element</div>
+        </div>
+
+        <script>
+            //get the element
+            let elem = document.getElementById('elem');
+
+            //make its background red
+            elem.style.background = 'red';
+        </script>
+
+        <!--
+            querySelecrorAll
+            returns all elements inside elem matching the given CSS selector
+        -->
+
+        <ul>
+            <li>The</li>
+            <li>Test</li>
+        </ul>
+        <ul>
+            <li>Has</li>
+            <li>Passed</li>
+        </ul>
+        <script>
+            let elements = document.querySelectorAll('ul > li:last-child');
+
+            for (let elem of elements) {
+                alert(elem.innerHTML);
+            }
+        </script>
+
+        <!--
+            querySelector
+            - returns the first element for the given CSS selector
+
+            Matches
+        -->
+        <a href="http://example.com/file.zip">Example link</a>
+        <a href="http://ya.ru">...</a>
+
+        <script>
+            //can be any collection in stead of document.body.children
+            for (let elem of document.body.children) {
+                if (elem.matches('a[href$="zip"]')) {
+                    alert("The archive reference: " + elem.href);
+                }
+            }
+        </script>
+    </body>
+</html>
