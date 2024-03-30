@@ -1,0 +1,100 @@
+<!--
+    Create new elements on the fly and modify existing content.
+-->
+
+<style>
+    .alert {
+        padding: 15px;
+        border: 1px solid #d6e9c6;
+        border-radius: 4px;
+        color: #3c763d;
+        background-color: #dff0d8;
+    }
+</style>
+<div class="alert"> 
+    <strong>Hi there!</strong> You've an important message.
+</div>
+
+<!--
+    There are two methods to create DOM nodes
+
+    document.createElement(tag)
+    document.createTextNode(text)
+-->
+
+<script>
+    let divn = document.createElement('div');
+</script>
+
+<script>
+    let textNode = document.createTextNode('Here I am!');
+</script>
+
+<!--
+    Creating the message
+    Step 1: Create the <div> element
+    step 2: Set its class to alert
+    step 3: Fill it with the content
+-->
+<script>
+    //Create the dic element
+    let div = document.createElement('div');
+
+    //Set its class to alert
+    div.className = "alert";
+
+    //Fill it with the content
+    div.innerHTML = "<strong>Hi ther!</strong> You've read an important message.";
+
+    //Inserting teh div
+    document.body.append(div);
+</script>
+
+<!--
+    Insertion methods
+    - To amke the div show up, we have to insert it somewhere into the document
+    - THere is a special method "append" -> document.body.append(div)
+-->
+
+<ol id="ol">
+    <li>0</li>
+    <li>1</li>
+    <li>2</li>
+</ol>
+
+<script>
+    ol.before('before'); //Insert before the list
+    ol.after('after'); //Insert after the list
+
+    let liFirst = document.createElement('li');
+    liFirst.innerHTML = 'prepend';
+    ol.prepend(liFirst); //Insert at the top of the list
+
+    let liLast = document.createElement('li');
+    liLast.innerHTML = 'append';
+    ol.append(liLast); //Insert at the bottom of the list
+</script>
+
+<!--
+    Node removal
+    - To remove a node node.remove()
+-->
+
+<style>
+    .alert {
+        padding: 15px;
+        border: 1px solid #d6e9c6;
+        border-radius: 4px;
+        color: #3c763d;
+        background-color: #dff0d8;
+    }
+</style>
+
+<script>
+    let div2 = document.createElement('div');
+    div2.className = 'alert';
+    div2.innerHTML = "<strong>Hi there!</strong> You've read an important message.";
+
+    document.body.append(div2);
+    setTimeout(() => div.remove(), 1000); //Remove the message after 1 second
+</script>

@@ -1,0 +1,105 @@
+<body>
+    <script>
+        let elem = document.body;
+
+        //let's examine what type of node is in elem?
+        alert(elem.nodeType);
+
+        //and its first child is...
+        alert(elem.firstChild.nodeType);
+
+        // for the document object, the type is 9
+        alert(document.nodeType);
+    </script>
+</body>
+
+<!--
+    innerHTML
+
+    - Allows us to get the html inside an element as a string
+    - We can modify it
+-->
+
+<body>
+    <p>Aparagraph</p>
+    <div>A div</div>
+
+    <script>
+        alert(document.body.innerHRML); // <p>A paragraph</p><div>A div</div>
+        document.body.innerHTML = "The new BODY!"; // the whole body is replaced
+    </script>
+</body>
+
+<!--
+    innerHTML+= does a full overwrite
+
+    - The old contents is removed
+    - The new innerHTML is written in stead.
+-->
+
+<!--
+    outerHTML: full HTML of the element
+
+    - innerHTML plus the element itself
+-->
+<div id="elem">Hello <b>World</b></div>
+
+<script>
+    alert(elem.outerHTML); // <div id="elem">Hello <b>World</b></div>
+</script>
+
+<div>Hello, World!</div>
+
+<script>
+    let div = document.querySelector('div');
+
+    //replace siv.outerHTML with <p> ...</p>
+    div.outerHTML = '<p>Anew element</p>';
+
+    //div is still the same
+    alert(div.outerHTML);
+</script>
+
+<!--
+    THE HIDDEN PROPERTY
+
+    - Specifies whether the element is visible or not.
+-->
+<div>
+    Both divs below are hidden
+</div>
+
+<div hidden>
+    With the attribute hidden
+</div>
+<div id="elem">
+    JavaScript ssigned the property "hidden"
+</div>
+<script>
+    elem.hidden = true;
+</script>
+
+<!--
+    Blinking element
+-->
+
+<div id="elem2">A blinking element</div>
+<script>
+    setInterval(() => elem.hidden = !elem.hidden, 1000);
+</script>
+
+<body>
+    <div id="elem3" about="Elephant"></div>
+
+    <script>
+        alert( elem3.getAttribute('About') ); // Elephant
+
+        elem3.setAttribute('Test', 123);
+
+        alert(elem3.outerHTML);
+
+        for (let attr of elem3.attributes) {
+            alert( `${attr.name} = ${attr.value}`);
+        }
+    </script>
+</body>
