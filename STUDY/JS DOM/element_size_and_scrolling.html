@@ -1,0 +1,129 @@
+
+<div id="example">
+    ...Text...
+</div>
+<style>
+    #example {
+        width: 300px;
+        height: 200px;
+        border: 25px solid #E8C48F;
+        padding: 20px;
+        overflow: auto;
+    }
+</style>
+
+<!--
+    It has the border, padding and scrolling
+    The full set of features
+    There are no margins, as they are not part of the lement itself. and there
+    are no special oproperties for them.
+
+    offsetParent, offsetLeft/Top
+    - The offsetParent is the nearest ancestor that the browser uses for calculating
+    coordinates during rendering
+
+    Ocassions when offsetParent is null
+    - When the element is not shown/ hidden
+    - for <body> and <html> elements
+    - For elements with position: fixed
+
+
+    offsetWidth/Height
+    - Outer width / height of the element, including borders
+
+    - We can use client height and width the expand the size of the element to its full height
+    and width, including the padding, but not the border
+
+    element.style.height - `${element.scrollHeight}px`;
+-->
+
+
+<!--
+    Window size and scrolling
+    
+    root document element document.documentElement
+
+    - To get the width and height, clientWidth/ clientHeight of document.documentElement
+    - To get the scroll, scrollWidth/ scrollHeight of document.documentElement.clientWidth
+    documentElement.clientHeight
+-->
+
+<!-- //show height of window display -->
+<script>
+    alert(document.documentElement.clientHeight);
+</script>
+
+<!--
+    As the root document element is document.documentElement, and it encloses all the content, we could measure the document's
+    full size as document.documentElement.scrollWidth/scrollHeight
+-->
+
+<script>
+    let scrollHeight = Math.max(
+        document.body.scrollHeight, document.documentElement.scrollHeight,
+        document.body.offsetHeight, document.documentElement.offsetHeight,
+        document.body.clientHeight, document.documentElement.clientHeight
+    );
+    alert('Full document height, with scrolled out part: ' + scrollHeight);
+</script>
+
+<!--
+    GET THE CURRENT SCROLL
+
+    - document.documentElement.scrollTop
+    - window.pageXOffset/pageYOffset
+-->
+<script>
+    alert('Current scroll from the top: ' + window.pageYOffset);
+    alert('Current scroll from the left: '+window.pageX0ffset);
+</script>
+
+<!--
+    SCROLLING: SCROLLTO, SCROLLBY, SCROLLINTOVIEW
+
+    - The method scrollBy(x,y) scrolls the page relative to its current position
+
+    - THe method scrollTo(pageX, pageY) scrolls the page tp the absolute coordinates, so that the top left corner of the visible page has coordinates (pageX, pageY)
+        To scroll to the very begining, window.scrollTo(0,0)
+
+
+
+    SCROLLINTOVIEW
+    elem.scrollIntoView(top) - scrolls the page so that the element elem is visible
+        - If top=true, Ther top of the element will appear at teh top of the window
+        - if top=false, page scrolls to amke eleme appear at the bottom.
+
+
+    FORBID THE SCROLLING
+    - When we need to make the page unscrollable
+
+    document.body.style.overflow = "hidden"
+    the page will freeze at its current scroll position.
+-->
+
+<script>
+    document.body.style.overflow = "hidden";
+    setTimeout(1000);
+    decument.body.style.overflow = "";
+</script>
+
+
+<!--
+    COORDINATES
+
+    - To move elements around
+
+    COORDINATE SYSTEMS
+    1. Reletive to the window - simillar to position: fixed
+    -Calculated from the window top-left edge
+
+    2. Relative to the document: simillar tpo position: absolute.
+    -Calculated from teh document top-left edge.
+
+    ELEMENT COORDINATES getBoundingClientRect()
+    - Returns window coordinates for a minimal rectangle that encloses elem as an object of built-in DOMRect class.
+
+
+    DOCUMENT COORDINATES
+    - Document related coordinates start from the top-left corner of the document.
+-->

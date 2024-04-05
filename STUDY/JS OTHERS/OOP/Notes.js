@@ -181,3 +181,114 @@ let user7 = new User("Jack");
 
 alert(user7.name); //Jack
 alert(user7.isAdmin); //false
+
+
+/**
+ * OPTIONAL CHAINING '?'
+ * 
+ * - Check if a value is missing before accessing iys property
+ */
+
+let rser = {};
+
+alert(rser.address ? rser.address.street : undefined);
+
+
+/**
+ * SYMBOL TYPE
+ * 
+ * - Only two primitive types can serve as object property keys
+ *  String type
+ *  Symbol type
+ * 
+ * 
+ * SYMBOLS
+ * - A value of this type can be created using symbol()
+ * 
+ * - Symbols dont autoconvert to string when using with alert()
+ * - IN order to use symbols as string, use .toString() method.
+ */
+
+let id = symbol("id");
+alert(id.toString());
+
+// Or get symbol.description property to show the description only
+
+alert(id.description);
+
+/**
+ * HIDDEN PROPERTIES
+ * 
+ * - Symbols allow us to create hidden properties of an object that no other function can overwrite
+ */
+
+let user = {
+    name: "John"
+};
+
+let id2 = symbol("id");
+
+user[id2] = 1;
+
+alert( user[id2] );
+
+
+/**
+ * OBJECT TO PRIMITIVE CONVERSION
+ * 
+ * - When an object is added to a string, it is converted to a primitive automatically
+ * The result of an object operation cannot result in another object but primitive.
+ * 
+ *  CONVERSION RULES
+ * - There is no conversion to boolean, all objects transalte to true
+ * - Numeric conversion happens when we apply mathemmatical operations 
+ * to symbols
+ * - String conversion happens wjhen objects are put in alert function
+ * alert(object)
+ */
+
+
+/**
+ * Symbol.toPrimitive
+ * 
+ * obj[symbol.toPrimitive] = function(hint) {
+ *  //here goes the code to convert this object to primitive
+ * // it must return a primitive value
+ * // hint = one of "string", "number", "default" * 
+ * };
+ * 
+ * - If the method .toPrimitive exists, it is used fro all hints and no more
+ * methods are needed
+ */
+
+let userr = {
+    name: "John",
+    money: 1000,
+
+    [symbol.toPrimitive](hint) {
+        alert(`hint: ${hint}`);
+        return hint == "string" ? `{name: "${this.name}"}` : this.money;
+    }
+};
+
+alert(user); //hint: string -> {name: "John"}
+alert(+user); //hint: number -> 1000
+alert(user + 500); //hint: default -> 1500
+
+
+/**
+ * toString/ valueOf
+ * 
+ * - If there is no symbol.toPrimitive, JavaScript tries to finc toString or valueOf methods.
+ */
+
+let userrr = {
+    name: "John",
+
+    toString() {
+        return this.name;
+    }
+};
+
+alert(userrr);
+alert(userrr + 500); //John500
