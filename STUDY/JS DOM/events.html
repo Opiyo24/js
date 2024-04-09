@@ -1,0 +1,89 @@
+<!--
+    Event: A signal that something has happened
+
+    MOUSE EVENTS
+    click - When the mpouse clicks on an element
+    contextmenu - When the mouse ight clicks on an element.
+    Mouseover/ mouseout - When the curson comes over/ leaves an element.
+    mousedown/ mouseup - WHen the mouse button is pressed/ released upon an elemnt
+    mousemove - when the mouse is moved.
+
+    KEYBOARD EVENTS
+    Keydown and key up
+
+
+    DFIRM ELEMENT EVENTS
+    Submit
+    Focus
+
+    DOCUMENT EVENTS
+    DOMContentLoaded - browser has fully koaded a document
+
+    CSS EVENTS
+    Transitioned - when s css transition finishes
+
+
+    EVENT HANDLERS
+    HTML Attribute
+    - Can be set in HTML with an attribute named on<event>
+-->
+
+
+<input value="Click me" onclick="alert('Click!')" type="button">
+
+<script>
+    function countRabbits() {
+        for (let i = 1; i <= 3; i++) {
+            alert("Rabbit number " + i);
+        }
+    }
+</script>
+
+<input type="button" onClick="coutRabbits()" value="CountRabbits!">
+
+<!--
+    DOM Property
+
+    - We can assign a handler usinga  DOM property
+    elem.onclick
+-->
+
+<input id="elem" type="button" value="Click me">
+
+<script>
+    elem.onclick = function() {
+        alert("Tnank You!");
+    };
+</script>
+
+<!--
+    To remove a handler, assign elementy.onclick = null
+
+    ACCESSING THE ELEMENT USING THIS
+
+    - The value os this inside an handler is the element
+-->
+
+<button onclick="alert(this.innerHTML)">Click me</button>
+
+<!-- 
+    Add event Listener
+
+    - elemet.addEventListener(event, handler, [options]);
+-->
+
+<input id="elem" type="button" value="Click me"/>
+
+<script>
+    function handler1() {
+        alert("Thanks.");
+    };
+
+    function handler2() {
+        alert("Thanks again!");
+    }
+
+    elem.onclick = () => alert("Hello");
+    alem.addEventListener("clicl", handler1);
+    elem.addEventListener("click", handler2);
+</script>
