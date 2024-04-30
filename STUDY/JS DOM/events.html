@@ -87,3 +87,66 @@
     alem.addEventListener("clicl", handler1);
     elem.addEventListener("click", handler2);
 </script>
+
+<!--
+    - The handler can be removed using removeEventListener
+    - The handler must be the same function as was added
+-->
+
+
+<!--
+    BUBBLING AND CAPTURING
+
+    Bubbling - When an event happens on an element, it first runs the handlers on it, then on its oarent, then all the way up on other ancestors.
+
+    event.target - The most deeply nested element that caused the event is called a target element, acessible as event.target.
+
+    event.target - the target element that initialized the event
+    this - the element currently running the handler.
+
+    CAPTURING - Not normally used
+-->
+
+
+<!--
+    EVENT DELEGATION
+
+    - A lot of elements handled in a simillar way to be used one handler.
+-->
+
+<table>
+    <tr>
+        <th colspan="3"><em>Bagua</em> Chart: Direction, Element, Color, Meaning</th>
+    </tr>
+    <tr>
+        <td class="nw"><strong>Northwest</strong><br>Metal<br>Silver<br>Elders</td>
+    </tr>
+</table>
+
+<!--
+    The table has 9  cells, could have 99 cells or 999 cells.
+    - To assign an onclick event on each cell
+    - In stead of assigning events for each cell, we set up a catch-all handler on the table
+    - It will use event.target
+-->
+
+<script>
+    let selectedTd;
+
+    table.onclick = function(event) {
+        let target = event.target;
+
+        if (target.tagName != 'TD') return;
+
+        highlight(target);
+    };
+
+    function highlight(td) {
+        if (selectedTd) {
+            selectedTd.classList.remove('highlight');
+        }
+
+        selectedTd = td;
+        selected.classList.add('highlight');
+    }
+</script>
